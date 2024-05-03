@@ -20,13 +20,13 @@ public class TestVirtualThread {
 
             for (int i = 0; i < 10; i++) {
                 executor.submit(() -> {
-                    System.out.println("任务" + Thread.currentThread().getName() + "开始执行");
+                    System.out.println("任务" + Thread.currentThread() + "开始执行");
                     try {
                         TimeUnit.SECONDS.sleep(2);
                     } catch (InterruptedException e) {
                         e.printStackTrace();
                     }
-                    System.out.println("任务" + Thread.currentThread().getName() + "执行完成");
+                    System.out.println("任务" + Thread.currentThread() + "执行完成");
                 });
             }
         }
@@ -59,7 +59,7 @@ public class TestVirtualThread {
                 .thenApplyAsync(result -> result.toUpperCase())
                 .thenAcceptAsync(uppercaseResult -> {
                     System.out.println("Uppercase result: " + uppercaseResult +
-                            " in thread: " + Thread.currentThread().getName());
+                            " in thread: " + Thread.currentThread());
                 });
 
         future.join();

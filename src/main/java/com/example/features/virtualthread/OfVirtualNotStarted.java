@@ -2,17 +2,15 @@ package com.example.features.virtualthread;
 
 import lombok.SneakyThrows;
 
-import java.util.concurrent.CountDownLatch;
-
 public class OfVirtualNotStarted {
     @SneakyThrows
-    public static void main(String[] args) {
+    public static void main() {
         final int numberOfThreads = 1000000;
 
         for (int i = 0; i < numberOfThreads; i++) {
             final int tIndex = i;
             Thread virtualThread = Thread.ofVirtual().unstarted(() -> {
-                System.out.println("virtual thread "  + tIndex + " is running on " + Thread.currentThread().getName());
+                System.out.println(STR."virtual thread \{tIndex} is running on \{Thread.currentThread()}");
             });
 
             virtualThread.start();
@@ -23,6 +21,6 @@ public class OfVirtualNotStarted {
 
         }
 
-       System.in.read();
+       Thread.sleep(60000);
     }
 }
